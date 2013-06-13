@@ -1,7 +1,11 @@
-# makefile for rgb project
-#
-# written by michael cousins
+# rgb
+# daisy-chainable lighting module
 # http://github.com/mcous/rgb
+#
+# copyright 2013 michael cousins and authors listed in http://github.com/mcous/rgb/AUTHORS.md
+# shared under the terms of the mit licence 
+
+# makefile
 #
 # targets:
 #   all:    compiles the source code
@@ -24,13 +28,18 @@ PRG = usbtiny
 LFU = 0xFF
 HFU = 0xDE
 EFU = 0x05
-# program source files (c and/or c++)
-SRC = TLC5940.cpp Effects.cpp $(PRJ).cpp
+# program source files (not including external libraries)
+SRC = $(PRJ).cpp Effects.cpp
+# where to look for aditional libraries (consisting of a .cpp file and .h files)
+LIB  = ../../TLC5940
 
 ##########################################################################################
 # stuff nobody needs to worry about until such time that worrying about it is appropriate
-# flags
-CFLAGS 	 = -Wall -Os -DF_CPU=$(CLK) -mmcu=$(MCU)
+# include path
+INCLUDE := $(foreach dir, $(LIB), -I$(dir))
+# c flags
+CFLAGS 	 = -Wall -Os -DF_CPU=$(CLK) -mmcu=$(MCU) $(INCLUDE)
+# any aditional flags for c++
 CPPFLAGS =
 
 # executables
@@ -38,12 +47,13 @@ AVRDUDE = avrdude -c $(PRG) -p $(MCU)
 OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
 SIZE    = avr-size --format=avr --mcu=$(MCU)
-CC 	    = avr-gcc
+CC      = avr-gcc
 
-# generate list of objects objects
-CFILES   = $(filter %.c, $(SRC))
-CPPFILES = $(filter %.cpp, $(SRC))
-OBJ      = $(CFILES:.c=.o) $(CPPFILES:.cpp=.o)
+# generate list of objects
+CFILES    = $(filter %.c, $(SRC))
+CPPFILES  = $(filter %.cpp, $(SRC))
+LIBFILES := $(foreach dir, $(LIB), $(wildcard $(dir)/*.cpp))
+OBJ       = $(CFILES:.c=.o) $(CPPFILES:.cpp=.o) $(LIBFILES:.cpp=.o)
 
 # user targets
 # compile all files
@@ -68,6 +78,7 @@ disasm: $(PRJ).elf
 # remove compiled files
 clean:
 	rm -f *.hex *.elf *.o
+	$(foreach dir, $(LIB), rm -f $(dir)/*.o;)
 
 # other targets
 # objects from c files
