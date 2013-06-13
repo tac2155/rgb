@@ -12,12 +12,10 @@
 
 int main (void) {
 
-<<<<<<< HEAD
-	lightShow.setEffect(4);
-=======
+
     // set the desired effect
-	lightShow.setEffect(2);
->>>>>>> upstream/master
+	lightShow.setEffect(4);
+
 
     // back in my day all the pits were bottomless
 	for(;;) {

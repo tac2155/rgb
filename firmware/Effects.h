@@ -29,46 +29,18 @@ public:
     void refresh();
 
 private:
-<<<<<<< HEAD
-
-	TLC5940 driver;
-	//overflow counter
-	uint16_t count;
-	//3x5 array to set RGBs
-	uint8_t leds[5][3];
-	//3 int array to set LED colors
-	uint8_t val[3];
-	//speed for effects
-	uint8_t step;	
-	//parameters for effects
-	uint8_t param[5];
-
-
-	//current effect function handle
-	void (Effects::*cF)(void);
-	//superdome show
-	void superDome(void);
-	//cylon
-	void cylon(void);
-	//bouncing color
-	void pingPong(void);
-	//unison fade
-	void allFade(void);
-
-	//private functions for effect
-	void rgb(uint16_t r, uint16_t g, uint16_t b);
-	void cosineVal(uint8_t* v, uint16_t t);
-=======
     // TLC5940 led driver
     TLC5940 driver;
     // overflow counter
     uint16_t count;
     // 5x3 array for led values (5x RGB led, where each RGB is 3 leds)
     uint8_t leds[5][3];
+    //3 int array to set LED colors
+	uint8_t val[3];
     // counter step for effects (bigger step = faster effects)
     uint8_t step;   
     // custom parameters for effects
-    uint8_t param[4];
+    uint8_t param[5];
 
     // current effect function handle
     void (Effects::*cF)(void);
@@ -77,12 +49,16 @@ private:
     // cylon
     void cylon(void);
 
+	//bouncing color
+	void pingPong(void);
+	//unison fade
+	void allFade(void);    
+
     // effect helper functions
     // sets all leds to the same color
     void rgb(uint16_t r, uint16_t g, uint16_t b);
     // saves to v the rgb values for a cosine-wave based rainbow given a time t (T = 384)
     void cosineVal(uint8_t* v, uint16_t t);
->>>>>>> upstream/master
 };
 
 #endif
