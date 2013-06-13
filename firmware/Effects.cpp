@@ -20,6 +20,9 @@ Effects::Effects() {
 }
 
 void Effects::setEffect(uint8_t eff) {
+    count = 0;
+    step = 1;
+
     switch ( eff ) {
 
     case SUPERDOME:
@@ -27,7 +30,7 @@ void Effects::setEffect(uint8_t eff) {
         param[0] = 76;
         
         //speed of functions
-        step = 1;
+
 
         cF = &Effects::superDome;
         break;
@@ -41,7 +44,7 @@ void Effects::setEffect(uint8_t eff) {
         param[3] = 1;
 
         //speed
-        step = 1;
+        
 
         cF = &Effects::cylon;
         break;
@@ -56,9 +59,23 @@ void Effects::setEffect(uint8_t eff) {
         //color tracker
         param[4] = 0;
 
-        step = 1;
+        
 
         cF = &Effects::pingPong;
+        break;
+
+    case ALLFADE:
+        val[0] = 500;
+        val[1] = 0;
+        val[2] = 0;
+        //dec LED
+        dec = 0;
+        //inc LED
+        inc = dec + 1;
+
+       
+
+        cF = &Effects::allFade;
         break;
     }  
 }
@@ -149,6 +166,26 @@ void Effects::pingPong(void) {
         driver.setGS(14, 500);
     }
     else { driver.setGS(param[1], 500); }
+    driver.refreshGS();
+}
+
+void Effects::allFade(void) {
+    //unison fade effect
+    if (count > 499) {
+        count = 0;
+        dec++;
+        if (dec == 3) {
+            dec = 0;
+        }
+        
+        inc = dec+1;
+        if (inc == 3) {
+            inc = 0;
+        }
+    }
+    val[dec] -= step;
+    val[inc] += step;
+    rgb(val[0], val[1], val[2]);
     driver.refreshGS();
 }
 

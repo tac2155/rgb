@@ -9,6 +9,7 @@
 #define SUPERDOME 1
 #define CYLON 2
 #define PINGPONG 3
+#define ALLFADE 4
 
 class Effects {
 public:
@@ -26,10 +27,15 @@ private:
 	uint16_t count;
 	//3x5 array to set RGBs
 	uint8_t leds[5][3];
+	//3 int array to set LED colors
+	uint16_t val[3];
 	//speed for effects
 	uint8_t step;	
 	//parameters for effects
 	uint8_t param[5];
+
+	uint8_t dec;
+	uint8_t inc;
 
 
 
@@ -41,6 +47,8 @@ private:
 	void cylon(void);
 	//bouncing color
 	void pingPong(void);
+	//unison fade
+	void allFade(void);
 
 	//private functions for effect
 	void rgb(uint16_t r, uint16_t g, uint16_t b);
