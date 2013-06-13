@@ -8,6 +8,7 @@
 //effect defines
 #define SUPERDOME 1
 #define CYLON 2
+#define PINGPONG 3
 
 class Effects {
 public:
@@ -28,7 +29,7 @@ private:
 	//speed for effects
 	uint8_t step;	
 	//parameters for effects
-	uint8_t param[4];
+	uint8_t param[5];
 
 
 
@@ -38,6 +39,8 @@ private:
 	void superDome(void);
 	//cylon
 	void cylon(void);
+	//bouncing color
+	void pingPong(void);
 
 	//private functions for effect
 	void rgb(uint16_t r, uint16_t g, uint16_t b);

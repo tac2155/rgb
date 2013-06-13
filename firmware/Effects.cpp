@@ -34,7 +34,7 @@ void Effects::setEffect(uint8_t eff) {
 
     case CYLON:
         //current LED
-        param[1] = 1;
+        param[1] = 0;
         //last LED
         param[2] = 0;
         //direction
@@ -44,6 +44,21 @@ void Effects::setEffect(uint8_t eff) {
         step = 1;
 
         cF = &Effects::cylon;
+        break;
+
+    case PINGPONG:
+        //current LED
+        param[1] = 0;
+        //last LED
+        param[2] = 0;
+        //direction
+        param[3] = 1;
+        //color tracker
+        param[4] = 0;
+
+        step = 1;
+
+        cF = &Effects::pingPong;
         break;
     }  
 }
@@ -77,21 +92,9 @@ void Effects::cylon() {
         param[2] = param[1];
         if (param[2] <=2) {
             param[3] = 1;
-            
-            // sets next color
-            /*
-            param[1] = track;
-            track = (track < 2) ? (track + 1) : 0;
-            */
         }
         else if (param[2] >= 12) {
             param[3] = -1;
-        
-            /*
-            param[1] = 12 + track;
-            // sets next color
-            track = (track < 2) ? (track + 1) : 0;
-            */
         }
         param[1] += 3*param[3];
     }
@@ -99,37 +102,55 @@ void Effects::cylon() {
     driver.setGS(param[1], 500);
     driver.refreshGS();
 }
+
+void Effects::pingPong(void) {
+    if (count > 10) {
+        count = 0;
+        param[2] = param[1];
+        if (param[2] <=2) {
+            param[3] = 1;
+            
+            // sets next color
+            param[1] = param[4];
+            param[4] = (param[4] < 2) ? (param[4] + 1) : 0;
+        }
+        else if (param[2] >= 12) {
+            param[3] = -1;
         
-        //bouncing color
-        //uint8_t track = 0;
-        /*
-        // white end clears
-        if (last <=2) {
-            driver.setGS(0, 0);
-            driver.setGS(1, 0);
-            driver.setGS(2, 0);
+            //sets next color
+            param[1] = 12 + param[4];
+            param[4] = (param[4] < 2) ? (param[4] + 1) : 0;
+            
         }
-        else if (last >= 12) {
-            driver.setGS(12, 0);
-            driver.setGS(13, 0);
-            driver.setGS(14, 0);
-        }
-        else { driver.setGS(last, 0); }
+        param[1] += 3*param[3];
+    }
+    // white end clears
+    if (param[2] <=2) {
+        driver.setGS(0, 0);
+        driver.setGS(1, 0);
+        driver.setGS(2, 0);
+    }
+    else if (param[2] >= 12) {
+        driver.setGS(12, 0);
+        driver.setGS(13, 0);
+        driver.setGS(14, 0);
+    }
+    else { driver.setGS(param[2], 0); }
 
-        //white end sets
-        if (param[1] <= 2) {
-            driver.setGS(0, 500);
-            driver.setGS(1, 500);
-            driver.setGS(2, 500);
-        }
-        else if (param[1] >= 12) {
-            driver.setGS(12, 500);
-            driver.setGS(13, 500);
-            driver.setGS(14, 500);
-        }
-        else { driver.setGS(param[1], 500); }
-        */
-
+    //white end sets
+    if (param[1] <= 2) {
+        driver.setGS(0, 500);
+        driver.setGS(1, 500);
+        driver.setGS(2, 500);
+    }
+    else if (param[1] >= 12) {
+        driver.setGS(12, 500);
+        driver.setGS(13, 500);
+        driver.setGS(14, 500);
+    }
+    else { driver.setGS(param[1], 500); }
+    driver.refreshGS();
+}
 
 
 void Effects::rgb(uint16_t r, uint16_t g, uint16_t b) {
