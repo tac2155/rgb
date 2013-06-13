@@ -19,6 +19,7 @@
 #define PINGPONG 3
 #define ALLFADE 4
 #define WATERFALL 5
+#define DOUBLEWF 6
 
 class Effects {
 public:
@@ -53,9 +54,12 @@ private:
 	//bouncing color
 	void pingPong(void);
 	//unison fade
-	void allFade(void);    
+	void allFade(void);  
 
+	//one direction on, off
 	void waterfall(void);
+	//on to off right and left
+	void doubleWF(void);
 
     // effect helper functions
     // sets all leds to the same color

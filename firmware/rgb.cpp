@@ -14,7 +14,7 @@ int main (void) {
 
 
     // set the desired effect
-	lightShow.setEffect(1);
+	lightShow.setEffect(6);
 
 
     // back in my day all the pits were bottomless

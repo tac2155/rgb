@@ -76,6 +76,16 @@ void Effects::setEffect(uint8_t eff) {
 
         cF = &Effects::waterfall;
         break;
+
+    case DOUBLEWF:
+        //starting LED left
+        param[1] = 2;
+        //starting led right
+        param[2] = 12;
+        param[5] = 1;
+
+        cF = &Effects::doubleWF;
+        break;
     }
 }
 
@@ -179,7 +189,7 @@ void Effects::allFade(void) {
 }
 
 void Effects::waterfall() {
-    if (count > 20) {
+    if (count > 15) {
         count = 0;
         driver.setGS(param[1], 500 * param[5]);
         //increases till 14
@@ -195,6 +205,36 @@ void Effects::waterfall() {
         }
         else if (!(param[1] % 3)) {
             param[1] += 5;
+        }
+    }
+    driver.refreshGS();
+}
+
+void Effects::doubleWF() {
+    if (count > 15) {
+        count = 0;
+        driver.setGS(param[1], 500 * param[5]);
+        driver.setGS(param[2], 500 * param[5]);
+        
+        //increases till middle
+        if (param[2] == 8) {
+            param[1] = 2;
+            param[2] = 12;
+            param[5] ^= 1;
+        }
+        //go from blue to red for left
+        //red to blue for right
+        else if (!((param[1] + 1) % 3)) {
+            param[1]--;
+            param[2]++;
+        }
+        else if (!((param[1] + 2) % 3)) {
+            param[1]--;
+            param[2]++;
+        }
+        else if (!(param[1] % 3)) {
+            param[1] += 5;
+            param[2] -= 5;
         }
     }
     driver.refreshGS();
