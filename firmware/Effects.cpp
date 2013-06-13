@@ -63,16 +63,20 @@ void Effects::setEffect(uint8_t eff) {
         //color tracker
         param[4] = 0;
 
-        
-
         cF = &Effects::pingPong;
         break;
 
     case ALLFADE:
-
         cF = &Effects::allFade;
         break;
-    }  
+
+    case WATERFALL:
+        param[1] = 2;
+        param[5] = 1;
+
+        cF = &Effects::waterfall;
+        break;
+    }
 }
 
 void Effects::refresh() {
@@ -173,6 +177,29 @@ void Effects::allFade(void) {
 
     driver.refreshGS();
 }
+
+void Effects::waterfall() {
+    if (count > 20) {
+        count = 0;
+        driver.setGS(param[1], 500 * param[5]);
+        //increases till 14
+        if (param[1] == 12) {
+            param[1] = 2;
+            param[5] ^= 1;
+        }
+        else if (!((param[1] + 1) % 3)) {
+            param[1]--;
+        }
+        else if (!((param[1] + 2) % 3)) {
+            param[1]--;
+        }
+        else if (!(param[1] % 3)) {
+            param[1] += 5;
+        }
+    }
+    driver.refreshGS();
+}
+
 
 void Effects::rgb(uint16_t r, uint16_t g, uint16_t b) {
     for (uint8_t i = 0; i < 15; i+=3) {

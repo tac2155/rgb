@@ -18,6 +18,7 @@
 #define CYLON 2
 #define PINGPONG 3
 #define ALLFADE 4
+#define WATERFALL 5
 
 class Effects {
 public:
@@ -40,7 +41,7 @@ private:
     // counter step for effects (bigger step = faster effects)
     uint8_t step;   
     // custom parameters for effects
-    uint8_t param[5];
+    uint8_t param[6];
 
     // current effect function handle
     void (Effects::*cF)(void);
@@ -53,6 +54,8 @@ private:
 	void pingPong(void);
 	//unison fade
 	void allFade(void);    
+
+	void waterfall(void);
 
     // effect helper functions
     // sets all leds to the same color
