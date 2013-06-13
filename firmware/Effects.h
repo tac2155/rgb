@@ -28,15 +28,11 @@ private:
 	//3x5 array to set RGBs
 	uint8_t leds[5][3];
 	//3 int array to set LED colors
-	uint16_t val[3];
+	uint8_t val[3];
 	//speed for effects
 	uint8_t step;	
 	//parameters for effects
 	uint8_t param[5];
-
-	uint8_t dec;
-	uint8_t inc;
-
 
 
 	//current effect function handle

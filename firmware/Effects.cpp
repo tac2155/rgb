@@ -65,15 +65,6 @@ void Effects::setEffect(uint8_t eff) {
         break;
 
     case ALLFADE:
-        val[0] = 500;
-        val[1] = 0;
-        val[2] = 0;
-        //dec LED
-        dec = 0;
-        //inc LED
-        inc = dec + 1;
-
-       
 
         cF = &Effects::allFade;
         break;
@@ -88,7 +79,6 @@ void Effects::refresh() {
 
 void Effects::superDome(void) {
     //super dome effect function   
-
     if (count > 383) {
         count = 0;
     }
@@ -171,24 +161,14 @@ void Effects::pingPong(void) {
 
 void Effects::allFade(void) {
     //unison fade effect
-    if (count > 499) {
+    if (count > 383) {
         count = 0;
-        dec++;
-        if (dec == 3) {
-            dec = 0;
-        }
-        
-        inc = dec+1;
-        if (inc == 3) {
-            inc = 0;
-        }
     }
-    val[dec] -= step;
-    val[inc] += step;
+    cosineVal(val, count);
     rgb(val[0], val[1], val[2]);
+
     driver.refreshGS();
 }
-
 
 void Effects::rgb(uint16_t r, uint16_t g, uint16_t b) {
     for (uint8_t i = 0; i < 15; i+=3) {
