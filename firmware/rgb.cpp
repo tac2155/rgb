@@ -14,15 +14,22 @@ int main (void) {
 
 
     // set the desired effect
-	lightShow.setEffect(5);
+	lightShow.setEffect(1);
 
 
     // back in my day all the pits were bottomless
 	for(;;) {
+
+		if (checkFlags()) {
+		}
         // refresh the lightshow
 		lightShow.refresh();
 	}
 
     // the answer
     return 42;
+}
+
+bool checkFlags() {
+	return false;
 }

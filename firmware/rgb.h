@@ -15,3 +15,6 @@ Effects lightShow;
 
 // function protoypes
 int main(void);
+
+
+bool checkFlags(void);
