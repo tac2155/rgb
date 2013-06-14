@@ -14,6 +14,7 @@
 #include "TLC5940.h"
 
 // effect defines
+#define WHITE 0
 #define SUPERDOME 1
 #define CYLON 2
 #define PINGPONG 3
@@ -82,6 +83,7 @@ private:
     void cyan(void);
     void blue(void);
     void purple(void);
+    void white(void);
 
     // effect helper functions
     // sets all leds to the same color

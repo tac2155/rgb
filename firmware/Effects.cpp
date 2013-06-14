@@ -35,6 +35,10 @@ void Effects::setEffect(uint8_t eff) {
 
     switch ( eff ) {
 
+    case WHITE:
+        cF = &Effects::white;
+        break;         
+
     case SUPERDOME:
         //shift
         param[0] = 76;
@@ -314,6 +318,11 @@ void Effects::blue() {
 
 void Effects::purple() {
     rgb(500, 0, 500);
+    driver.refreshGS();
+}
+
+void Effects::white() {
+    rgb(500, 500, 500);
     driver.refreshGS();
 }
 
