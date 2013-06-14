@@ -7,6 +7,8 @@
 
 // light effects class using a tlc5940
 
+//six working effects currently
+
 // header files
 #include "Effects.h"
 #include "sinetable.h"
@@ -25,15 +27,17 @@ Effects::Effects() {
 
 void Effects::setEffect(uint8_t eff) {
     count = 0;
+    //speed of functions
     step = 1;
+    for (uint8_t i=0; i<15; i++) {
+        driver.setGS(i, 0);
+    }
 
     switch ( eff ) {
 
     case SUPERDOME:
         //shift
         param[0] = 76;
-        
-        //speed of functions
 
 
         cF = &Effects::superDome;
@@ -47,9 +51,7 @@ void Effects::setEffect(uint8_t eff) {
         //direction
         param[3] = 1;
 
-        //speed
         
-
         cF = &Effects::cylon;
         break;
 
@@ -67,6 +69,8 @@ void Effects::setEffect(uint8_t eff) {
         break;
 
     case ALLFADE:
+        secCount = 0;
+
         cF = &Effects::allFade;
         break;
 
@@ -86,6 +90,15 @@ void Effects::setEffect(uint8_t eff) {
 
         cF = &Effects::doubleWF;
         break;
+
+    case PURPLERW:
+        cF = &Effects::purpleRB;
+        break;
+
+    case GREEN:
+        cF = &Effects::green;
+        break;
+
     }
 }
 
@@ -179,13 +192,17 @@ void Effects::pingPong(void) {
 
 void Effects::allFade(void) {
     //unison fade effect
-    if (count > 383) {
+    if(count > 100) {
         count = 0;
+        if (secCount > 383) {
+            secCount = 0;
+        }
+        cosineVal(val, secCount);
+        secCount++;
     }
-    cosineVal(val, count);
     rgb(val[0], val[1], val[2]);
-
     driver.refreshGS();
+
 }
 
 void Effects::waterfall() {
@@ -240,6 +257,23 @@ void Effects::doubleWF() {
     driver.refreshGS();
 }
 
+void Effects::purpleRB() {
+        //unison fade effect
+    if (count > 255) {
+        count = 0;
+    }
+    cosineDVal(val, count);
+    rgb(val[0], 0, val[2]);
+
+    driver.refreshGS();
+}
+
+void Effects::green() {
+    rgb(0, 500, 0);
+    driver.refreshGS();
+}
+
+
 
 void Effects::rgb(uint16_t r, uint16_t g, uint16_t b) {
     for (uint8_t i = 0; i < 15; i+=3) {
@@ -271,6 +305,29 @@ void Effects::cosineVal(uint8_t* v, uint16_t t) {
     else if (zone == 1) {
         v[0] = 0;
         v[1] = cosine;
+        v[2] = 255 - cosine;
+    }
+    else {
+        v[0] = 255 - cosine;
+        v[1] = 0;
+        v[2] = cosine;
+    }
+}
+
+//2 color cosine function
+void Effects::cosineDVal(uint8_t* v, uint16_t t) {
+    uint16_t time = t;
+    while (time > 255) {
+        time -= 256;
+    }
+    uint8_t zone = time/128;
+    while (time > 127) {
+        time -= 128;
+    }
+    uint8_t cosine = sine256(time + 64);
+    if (zone == 0) {
+        v[0] = cosine;
+        v[1] = 0;
         v[2] = 255 - cosine;
     }
     else {

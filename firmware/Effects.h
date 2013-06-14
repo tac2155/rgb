@@ -20,6 +20,8 @@
 #define ALLFADE 4
 #define WATERFALL 5
 #define DOUBLEWF 6
+#define PURPLERW 7
+#define GREEN 8
 
 class Effects {
 public:
@@ -44,6 +46,10 @@ private:
     // custom parameters for effects
     uint8_t param[6];
 
+    //attempting to slow down SD
+    uint16_t secCount;
+
+
     // current effect function handle
     void (Effects::*cF)(void);
     // superdome show
@@ -61,11 +67,18 @@ private:
 	//on to off right and left
 	void doubleWF(void);
 
+	//experimental effects
+	void purpleRB(void);
+    void green(void);
+
     // effect helper functions
     // sets all leds to the same color
     void rgb(uint16_t r, uint16_t g, uint16_t b);
     // saves to v the rgb values for a cosine-wave based rainbow given a time t (T = 384)
     void cosineVal(uint8_t* v, uint16_t t);
+
+    //only 2 colors
+    void cosineDVal(uint8_t* v, uint16_t t);
 };
 
 #endif
