@@ -22,6 +22,9 @@
 // global objects
 Effects lightShow;
 
+uint8_t addr;
+
+
 // function protoypes
 int main(void);
 

@@ -12,12 +12,14 @@
 
 int main (void) {
 
+	addr = (PINC & 63) | (PIND & 192);
+
 	cli();
 	USART_Init(MYUBRR);
 
 
     // set the desired effect
-	lightShow.setEffect(2);
+	lightShow.setEffect(1);
 
 	UCSR0B |= (1 << RXCIE0);
 	sei();
@@ -52,6 +54,15 @@ unsigned char USART_Receive( void ) {
 }
 
 ISR(USART_RX_vect) {
+
 	uint8_t data = UDR0;
-	lightShow.setEffect(data);
+
+	if(data == addr) {
+		lightShow.setEffect(2);
+	}
+	else {
+		lightShow.setEffect(data);
+	}
+	//lightShow.setEffect(data);
+
 }
