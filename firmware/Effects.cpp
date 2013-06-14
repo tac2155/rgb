@@ -95,10 +95,29 @@ void Effects::setEffect(uint8_t eff) {
         cF = &Effects::purpleRB;
         break;
 
+    case RED:
+        cF = &Effects::red;
+        break;
+
+    case YELLOW:
+        cF = &Effects::yellow;
+        break;        
+
     case GREEN:
         cF = &Effects::green;
         break;
 
+    case CYAN:
+        cF = &Effects::cyan;
+        break;
+
+    case BLUE:
+        cF = &Effects::blue;
+        break;
+        
+    case PURPLE:
+        cF = &Effects::purple;
+        break;
     }
 }
 
@@ -268,8 +287,33 @@ void Effects::purpleRB() {
     driver.refreshGS();
 }
 
+void Effects::red() {
+    rgb(500, 0, 0);
+    driver.refreshGS();
+}
+
+void Effects::yellow() {
+    rgb(500, 500, 0);
+    driver.refreshGS();
+}
+
 void Effects::green() {
     rgb(0, 500, 0);
+    driver.refreshGS();
+}
+
+void Effects::cyan() {
+    rgb(0, 500, 500);
+    driver.refreshGS();
+}
+
+void Effects::blue() {
+    rgb(0, 0, 500);
+    driver.refreshGS();
+}
+
+void Effects::purple() {
+    rgb(500, 0, 500);
     driver.refreshGS();
 }
 

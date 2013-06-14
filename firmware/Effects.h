@@ -21,7 +21,12 @@
 #define WATERFALL 5
 #define DOUBLEWF 6
 #define PURPLERW 7
-#define GREEN 8
+#define RED 8
+#define YELLOW 9
+#define GREEN 10
+#define CYAN 11
+#define BLUE 12
+#define PURPLE 13
 
 class Effects {
 public:
@@ -69,7 +74,14 @@ private:
 
 	//experimental effects
 	void purpleRB(void);
+    
+    //simple colors
+    void red(void);
+    void yellow(void);
     void green(void);
+    void cyan(void);
+    void blue(void);
+    void purple(void);
 
     // effect helper functions
     // sets all leds to the same color
