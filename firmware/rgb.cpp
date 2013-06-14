@@ -64,14 +64,9 @@ void USART_Transmit( unsigned char data ) {
 ISR(USART_RX_vect) {
 
 	uint8_t data = UDR0;
-
 	if(data == addr) {
-		lightShow.setEffect(2);
-		USART_Transmit(data);
-	}
-	else {
+		USART_Transmit(data - 1);
+		data = UDR0;
 		lightShow.setEffect(data);
 	}
-	//lightShow.setEffect(data);
-
 }
