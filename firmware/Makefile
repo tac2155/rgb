@@ -29,7 +29,7 @@ LFU = 0xFF
 HFU = 0xDE
 EFU = 0x05
 # program source files (not including external libraries)
-SRC = $(PRJ).cpp Effects.cpp
+SRC = $(PRJ).cpp Effects.cpp USART.cpp
 # where to look for aditional libraries (consisting of a .cpp file and .h files)
 LIB  = ../../TLC5940
 

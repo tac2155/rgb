@@ -215,7 +215,7 @@ void Effects::pingPong(void) {
 
 void Effects::allFade(void) {
     //unison fade effect
-    if(count > 100) {
+    if(count > 200) {
         count = 0;
         if (secCount > 383) {
             secCount = 0;
