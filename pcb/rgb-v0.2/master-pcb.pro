@@ -1,11 +1,6 @@
-update=6/19/2013 8:02:59 AM
+update=6/19/2013 3:10:36 PM
 version=1
 last_client=kicad
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
 [eeschema]
 version=1
 LibDir=E:/kicad-lib/components
@@ -41,20 +36,24 @@ DrawSegmentWidth=0.200000000000
 BoardOutlineThickness=0.100000000000
 ModuleOutlineThickness=0.150000000000
 [pcbnew/libraries]
-LibDir=E:/kicad-lib/footprints
 LibName1=xtal
 LibName2=connect_sm
 LibName3=connect_thru
 LibName4=dip
 LibName5=fn-ml
-LibName6=mount
-LibName7=qfp
-LibName8=sip
-LibName9=sm_cap
-LibName10=sm_gen
-LibName11=sm_led
-LibName12=so
-LibName13=switch
-LibName14=to
+LibName6=qfp
+LibName7=sip
+LibName8=sm_cap
+LibName9=sm_gen
+LibName10=sm_led
+LibName11=so
+LibName12=switch
+LibName13=to
+LibDir=E:/kicad-lib/footprints
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms
 [general]
 version=1
