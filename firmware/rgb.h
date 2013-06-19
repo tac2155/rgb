@@ -19,10 +19,9 @@
 
 #define STOP 255
 
-//adding in serial communication UART
-
 // global objects
 Effects lightShow;
+
 
 volatile bool trans;
 volatile bool sel;

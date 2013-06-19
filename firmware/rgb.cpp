@@ -21,14 +21,12 @@ int main (void) {
 	trans = false;
 	sel = false;
 
-
     // set the desired effect
 	lightShow.setEffect(2);
 
 	UCSR0B |= (1 << RXCIE0);
 	UCSR0B |= (1 << TXCIE0);
 	sei();
-
 
     // back in my day all the pits were bottomless
 	for(;;) {
@@ -98,7 +96,7 @@ ISR (USART_TX_vect) {
 	//blue
 	lightShow.setEffect(13);
 	//release TX and turn off empty register interrupt
-	//UCSR0B &= ~(1 << TXEN0);
+	UCSR0B &= ~(1 << TXEN0);
 }
 
 
