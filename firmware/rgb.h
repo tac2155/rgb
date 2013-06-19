@@ -17,10 +17,16 @@
 #define BAUD 9600
 #define MYUBRR F_CPU/16/BAUD-1
 
+#define STOP 255
+
 //adding in serial communication UART
 
 // global objects
 Effects lightShow;
+
+volatile bool trans;
+volatile bool sel;
+volatile bool txData;
 
 uint8_t addr;
 
@@ -31,4 +37,4 @@ int main(void);
 
 void USART_Init( unsigned int ubrr);
 
-unsigned char USART_Receive( void );
+void USART_Transmit( unsigned char d);
