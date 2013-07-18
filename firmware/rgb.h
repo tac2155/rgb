@@ -25,7 +25,7 @@ Effects lightShow;
 
 volatile bool trans;
 volatile bool sel;
-volatile bool txData;
+volatile uint8_t txData;
 
 uint8_t addr;
 

@@ -22,7 +22,7 @@ int main (void) {
 	sel = false;
 
     // set the desired effect
-	lightShow.setEffect(2);
+	lightShow.setEffect(1);
 
 	UCSR0B |= (1 << RXCIE0);
 	UCSR0B |= (1 << TXCIE0);
@@ -77,6 +77,7 @@ ISR(USART_RX_vect) {
 	}
 
 	else {
+		//red
 		lightShow.setEffect(8);
 		if (data == STOP) {
 			trans = false;
