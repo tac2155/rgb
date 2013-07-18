@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-05-31 BZR 4019)-stable date = 6/19/2013 3:10:02 PM
+Cmp-Mod V01 Created by CvPcb (2013-05-31 BZR 4019)-stable date = 7/1/2013 11:37:55 AM
 
 BeginCmp
 TimeStamp = /51C1CD2F;
@@ -22,10 +22,10 @@ IdModule  = 0603(1608m);
 EndCmp
 
 BeginCmp
-TimeStamp = /51C1F9A2;
+TimeStamp = /51CE172E;
 Reference = C4;
 ValeurCmp = 100uF;
-IdModule  = 0603(1608m);
+IdModule  = CYLIN_CAP;
 EndCmp
 
 BeginCmp
@@ -102,14 +102,14 @@ BeginCmp
 TimeStamp = /51C21BA2;
 Reference = C15;
 ValeurCmp = 100uF;
-IdModule  = 0603(1608m);
+IdModule  = CYLIN_CAP;
 EndCmp
 
 BeginCmp
 TimeStamp = /51C20DF4;
 Reference = D1;
 ValeurCmp = D;
-IdModule  = 0603(1608m)_led;
+IdModule  = 0603(1608m)_LED;
 EndCmp
 
 BeginCmp
@@ -123,7 +123,7 @@ BeginCmp
 TimeStamp = /51C1EAD9;
 Reference = IC1;
 ValeurCmp = 5V_REG;
-IdModule  = ;
+IdModule  = TO220_3pin;
 EndCmp
 
 BeginCmp
@@ -179,7 +179,7 @@ BeginCmp
 TimeStamp = /51C21A0E;
 Reference = LED1;
 ValeurCmp = LED;
-IdModule  = 0603(1608m)_led;
+IdModule  = 0603(1608m)_LED;
 EndCmp
 
 BeginCmp
@@ -193,7 +193,7 @@ BeginCmp
 TimeStamp = /51C228B8;
 Reference = PW1;
 ValeurCmp = DC_BARREL_JACK;
-IdModule  = ;
+IdModule  = 2x3-array;
 EndCmp
 
 BeginCmp
@@ -232,62 +232,6 @@ IdModule  = 0603(1608m);
 EndCmp
 
 BeginCmp
-TimeStamp = /51C22219;
-Reference = R6;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22228;
-Reference = R7;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22237;
-Reference = R8;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22246;
-Reference = R9;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22255;
-Reference = R10;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22264;
-Reference = R11;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22273;
-Reference = R12;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
-TimeStamp = /51C22282;
-Reference = R13;
-ValeurCmp = 10k;
-IdModule  = 0603(1608m);
-EndCmp
-
-BeginCmp
 TimeStamp = /51C1CED7;
 Reference = S1;
 ValeurCmp = RESET;
@@ -295,17 +239,10 @@ IdModule  = SPST_4-pin-sm;
 EndCmp
 
 BeginCmp
-TimeStamp = /51C1D1DB;
-Reference = S2;
-ValeurCmp = ADDRESS;
-IdModule  = ;
-EndCmp
-
-BeginCmp
 TimeStamp = /51C1CCBF;
 Reference = Y1;
 ValeurCmp = 16MHz;
-IdModule  = ;
+IdModule  = HC49;
 EndCmp
 
 EndListe

@@ -122,6 +122,10 @@ void Effects::setEffect(uint8_t eff) {
     case PURPLE:
         cF = &Effects::purple;
         break;
+
+    case ULTRAMARINE:
+        cF = &Effects::ultraMarine;
+        break;        
     }
 }
 
@@ -323,6 +327,11 @@ void Effects::purple() {
 
 void Effects::white() {
     rgb(500, 500, 500);
+    driver.refreshGS();
+}
+
+void Effects::ultraMarine() {
+    rgb(63, 0, 255);
     driver.refreshGS();
 }
 

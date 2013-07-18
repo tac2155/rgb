@@ -28,6 +28,7 @@
 #define CYAN 11
 #define BLUE 12
 #define PURPLE 13
+#define ULTRAMARINE 14
 
 class Effects {
 public:
@@ -84,6 +85,7 @@ private:
     void blue(void);
     void purple(void);
     void white(void);
+    void ultraMarine(void);
 
     // effect helper functions
     // sets all leds to the same color
