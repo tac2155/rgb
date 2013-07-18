@@ -62,10 +62,10 @@ ISR(USART_RX_vect) {
 	if(!trans) {
 		trans = true;
 		//yellow
-		lightShow.setEffect(9);
+		//lightShow.setEffect(9);
 		if (data == addr) {
 			//green
-			lightShow.setEffect(10);
+			//lightShow.setEffect(10);
 			sel = true;
 			USART_Transmit(data + 1);
 		}
@@ -77,8 +77,6 @@ ISR(USART_RX_vect) {
 	}
 
 	else {
-		//red
-		lightShow.setEffect(8);
 		if (data == STOP) {
 			trans = false;
 		}
@@ -88,14 +86,14 @@ ISR(USART_RX_vect) {
 //fires when data register is empty		
 ISR (USART_UDRE_vect) {
 	//cyan
-	lightShow.setEffect(11);
+	//lightShow.setEffect(11);
 	UDR0 = txData;
 	UCSR0B &= ~(1 << UDRIE0);
 }
 
 ISR (USART_TX_vect) {
 	//blue
-	lightShow.setEffect(13);
+	//lightShow.setEffect(13);
 	//release TX and turn off empty register interrupt
 	UCSR0B &= ~(1 << TXEN0);
 }
